@@ -1,0 +1,22 @@
+Question:- 
+Find Maximum Sum of a continuous subarray of k length from a given array.
+
+Solution:- 
+def max_subarray_sum(arr, k):
+    if k <= 0 or k > len(arr):
+        return None  # Invalid input
+
+    max_sum = float('-inf')  # Initialize max_sum to negative infinity
+    current_sum = sum(arr[:k])  # Calculate the sum of the first 'k' elements
+
+    for i in range(k, len(arr)):
+        current_sum += arr[i] - arr[i - k]  
+        max_sum = max(max_sum, current_sum)  
+
+    return max_sum
+
+# Example usage:
+arr = [2, 1, 5, 1, 3, 2]
+k = 3
+result = max_subarray_sum(arr, k)
+print("Maximum sum of subarray of length", k, "is:", result)
